@@ -1,64 +1,27 @@
-const img = document.querySelector('img')
-const white = document.querySelector('.white')
-const space = document.querySelector('.space')
+const img = document.querySelector('.mid img')
+const btns = document.querySelectorAll('.but button')
+const prices = document.querySelectorAll('.four_block button')
+const txt = document.querySelector('.right p')
+const rSpan = document.querySelector('.right span')
 
-const spa = document.querySelector('span')
-const p_ = document.querySelector('.pp')
+const priceOrg = 1999
 
-const one = document.querySelector('#one')
-const two = document.querySelector('#two')
-const three = document.querySelector('#three')
-const four = document.querySelector('#four')
-
-white.onclick = () => {
-    img.setAttribute('src', './images/mac_white.png')
-    white.style.backgroundColor = 'rgb(21, 76, 255)'
-    white.style.color = '#fff'
-    space.style.backgroundColor = 'rgb(161, 208, 255)'
-    space.style.color = 'gray'
-    white.style.transition = '.8s ease'
-    spa.innerHTML = 'White'
-    p_.innerHTML = '$1999'
+const images = {
+    white: './images/mac_white.png',
+    space: './images/mac_silver.png',
 }
 
-space.onclick = () => {
-    img.setAttribute('src', './images/mac_silver.png')
-    space.style.backgroundColor = 'rgb(21, 76, 255)'
-    space.style.color = '#fff'
-    white.style.backgroundColor = 'rgb(161, 208, 255)'
-    white.style.color = 'gray'
-    space.style.transition = '.8s ease'
-    spa.innerHTML = 'Space Gray'
-    p_.innerHTML = '$1999'
-}
-one.onclick = () => {
-    one.style.border = '2px solid rgb(21, 76, 255)'
-    two.style.border = ''
-    three.style.border = ''
-    four.style.border = ''
-    p_.innerHTML = '$1999'
-    
-}
-two.onclick = () => {
-    two.style.border = '2px solid rgb(21, 76, 255)'
-    p_.innerHTML = `$${1999 + 200}`
-    one.style.border = ''
-    three.style.border = ''
-    four.style.border = ''
-}
-three.onclick = () => {
-    three.style.border = '2px solid rgb(21, 76, 255)'
-    p_.innerHTML = `$${1999 + 600}`
-    one.style.border = ''
-    two.style.border = ''
-    four.style.border = ''
-}
-four.onclick = () => {
-    four.style.border = '2px solid rgb(21, 76, 255)'
-    p_.innerHTML = `$${1999 + 1200}`
-    one.style.border = ''
-    two.style.border = ''
-    three.style.border = ''
-}
+btns.forEach(btn => {
+    btn.onclick = () => {
+        const imag = btn.className.toLowerCase()
+        img.setAttribute('src', images[imag])
+        rSpan.innerHTML = btn.innerHTML
+    }
+})
 
-
+prices.forEach(price => {
+    price.onclick = () => {
+        const pr = +price.lastElementChild.innerHTML .split('+$').at(-1) || 0
+        txt.innerHTML = `$${pr + priceOrg}`
+    }
+}) 
